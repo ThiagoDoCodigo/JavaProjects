@@ -13,7 +13,7 @@ public class Main {
         //    tree.insert(v); 
         //}
 
-        int[] values = {40, 20, 10, 60, 80, 30, 25, 70, 65, 90};
+        int[] values = {50, 25, 75, 10, 30, 60, 80};
 
         for (int v : values) {
             tree.insert(v); 

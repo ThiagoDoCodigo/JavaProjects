@@ -1,18 +1,20 @@
-public class Tree{
-   private Sheet root;
+package arvoreBinaria;
+
+public class TreeBinary{
+   private SheetBinary root;
    
    public void insert(int valor){
       this.root = insertRecursive(valor, this.root);
    }
    
-   public Sheet insertRecursive(int valor, Sheet cursor){
+   public SheetBinary insertRecursive(int valor, SheetBinary cursor){
       //caso de parada
       if(cursor == null){
-         return new Sheet(valor);  
+         return new SheetBinary(valor);  
       }
       
       if(valor < cursor.getValor()){
-         cursor.setLeft(insertRecursive(valor, cursor.rgetLeft()));
+         cursor.setLeft(insertRecursive(valor, cursor.getLeft()));
       }else if(valor > cursor.getValor()){
          cursor.setRight(insertRecursive(valor, cursor.getRight()));
       }
@@ -24,7 +26,7 @@ public class Tree{
       return getHeigth(this.root);
    }
    
-   public int getHeigth(Sheet sheet){
+   public int getHeigth(SheetBinary sheet){
       if(sheet == null){
          return 0;
       }
@@ -39,7 +41,7 @@ public class Tree{
       return getSheets(this.root);
    }
    
-   public int getSheets(Sheet sheet){
+   public int getSheets(SheetBinary sheet){
       if(sheet == null){
          return 0;
       }
@@ -50,11 +52,11 @@ public class Tree{
       return (left + right) + 1;
    }
    
-   public Sheet getSmall(){
+   public SheetBinary getSmall(){
       return getSmall(this.root);
    }
    
-   public Sheet getSmall(Sheet sheet){
+   public SheetBinary getSmall(SheetBinary sheet){
       if(sheet == null){
          return null;
       }
@@ -64,5 +66,27 @@ public class Tree{
       }
       
       return getSmall(sheet.getLeft());
+   }
+   
+   public SheetBinary search(int valor){
+      return searchRecursive(valor, this.root);
+   }
+   
+   public SheetBinary searchRecursive(int valor, SheetBinary cursor){
+      if(cursor == null){
+         return null;
+      }
+      
+      if(valor == cursor.getValor()){
+         return cursor;
+      }
+      
+      if(valor < cursor.getValor()){
+         return searchRecursive(valor, cursor.getLeft());
+      } else if(valor > cursor.getValor()){
+         return searchRecursive(valor, cursor.getRight());
+      }
+      
+      return null;
    }
 }

@@ -1,13 +1,15 @@
+package arvoreAVL;
+
 public class Tree {
     private Sheet root;
-
+   
     private int getHeight(Sheet sheet) {
         if (sheet == null) {
             return 0;
         }
         return sheet.getHeight();
     }
-
+     
     private int getBalanceFactor(Sheet sheet) {
         if (sheet == null) {
             return 0;
@@ -97,4 +99,26 @@ public class Tree {
             buildInOrderString(sheet.getRight(), sb);
         }
     }
+    
+   public Sheet search(int value){
+      return searchRecursive(value, this.root);
+   }
+   
+   public Sheet searchRecursive(int value, Sheet cursor){
+      if(cursor == null){
+         return null;
+      }
+      
+      if(value == cursor.getValue()){
+         return cursor;
+      }
+      
+      if(value < cursor.getValue()){
+         return searchRecursive(value, cursor.getLeft());
+      } else if(value > cursor.getValue()){
+         return searchRecursive(value, cursor.getRight());
+      }
+      
+      return null;
+   }
 }
